@@ -172,9 +172,10 @@ public final class GroovyDemoManager {
 
             List<CartProductEntity> cartProductEntities = new ArrayList<>();
 
-            cartEntities.add(CartBuilder.build(101L,new Date(),1000L,200L,1200L));
+            //TODO When restarting the app this database entry is not being pulled with a description
 
-            cartProductEntities.add(CartProductBuilder.build(101L,101L,"First Cart",1200L,1));
+            cartEntities.add(CartBuilder.build(101L, new Date(),1000L,200L,1653L));
+            cartProductEntities.add(CartProductBuilder.build(101L,101L,"Coffee, Delicous Spicy Wings, Tasty Chicken Sandwich",1653L,1));
 
             DatabaseHelper.getInstance().getDatabase().getCartDao().insertCarts(
                     cartEntities.toArray(new CartEntity[0]));
