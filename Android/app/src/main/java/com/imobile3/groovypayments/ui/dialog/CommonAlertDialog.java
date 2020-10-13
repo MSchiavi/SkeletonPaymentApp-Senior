@@ -15,6 +15,7 @@ import com.imobile3.groovypayments.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
 public class CommonAlertDialog extends Dialog {
@@ -69,6 +70,10 @@ public class CommonAlertDialog extends Dialog {
 
     public void setMessage(@NonNull CharSequence message) {
         mMessage = message.toString();
+    }
+
+    public void setMessage(@StringRes int messageId) {
+        setMessage(getContext().getText(messageId));
     }
 
     public void setStyle(@NonNull Style style) {
