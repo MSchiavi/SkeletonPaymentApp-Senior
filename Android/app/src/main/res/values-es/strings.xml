@@ -119,6 +119,9 @@
     <string name="keypad_00">00</string>
     <string name="keypad_0">0</string>
 
+    <!-- Content Descriptions   -->
+    <string name="description_product_icon">Icono de producto</string>
+
     <!-- Progress / Tasks -->
     <string-array name="progress_dialog_messages">
         <item>Analizando los números&#8230;</item>
