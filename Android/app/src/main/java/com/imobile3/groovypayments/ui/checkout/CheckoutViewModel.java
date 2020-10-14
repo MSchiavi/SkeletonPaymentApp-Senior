@@ -46,27 +46,27 @@ public class CheckoutViewModel extends ViewModel {
         return observable;
     }
 
-    public void setPaymentAmount(Long amount){
+    public void setPaymentAmount(long amount){
         _paymentAmount.postValue(amount);
     }
 
-    public void pushPaymentAmount(Long amount){
-        Long paymentAmount = _paymentAmount.getValue();
-        if(paymentAmount == null){
-            paymentAmount = 0L;
-        }
+    public void pushPaymentAmount(long amount){
+        long paymentAmount = _paymentAmount.getValue();
         paymentAmount = paymentAmount*10 + amount;
         System.out.println(paymentAmount);
         _paymentAmount.postValue(paymentAmount);
     }
 
     public void popPaymentAmount(){
-        Long paymentAmount = _paymentAmount.getValue();
-        if(paymentAmount != null){
+        long paymentAmount = _paymentAmount.getValue();
             paymentAmount = paymentAmount / 10;
             _paymentAmount.postValue(paymentAmount);
             System.out.println(paymentAmount);
-        }
+    }
+
+    public long changeDue(long cartAmount){
+        long paymentAmount = _paymentAmount.getValue();
+        return paymentAmount - cartAmount;
     }
 
 

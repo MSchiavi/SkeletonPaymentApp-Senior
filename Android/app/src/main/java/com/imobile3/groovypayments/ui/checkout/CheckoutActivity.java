@@ -260,10 +260,18 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void handlePayWithCashClick() {
-        showAlertDialog(
-                R.string.common_under_construction,
-                R.string.under_construction_alert_message,
-                R.string.common_acknowledged);
+        long change = mViewModel.changeDue(CartManager.getInstance().getCart().getGrandTotal());
+        if (change < 0) {
+            showAlertDialog(R.string.checkout_insufficient_amount_title, R.string.checkout_insufficient_amount_message, R.string.common_acknowledged);
+        } else {
+            showAlertDialog(
+                    getString(R.string.checkout_confirm_title),
+                    getString(R.string.checkout_confirm_message) + " " + new CurrencyRules().getFormattedAmount(change, Locale.getDefault()),
+                    v -> {
+                        //TODO go to CheckoutComplete Activity
+                    });
+        }
+
     }
 
     //region (Animated) View Transitions
@@ -385,9 +393,9 @@ public class CheckoutActivity extends BaseActivity {
         }
     }
 
-    private void initLblCashAmountObservers(){
+    private void initLblCashAmountObservers() {
         mViewModel.paymentAmountObservable().observe(this, cashAmount -> {
-            mLblCashAmount.setText(new CurrencyRules().getFormattedAmount(cashAmount,Locale.getDefault()));
+            mLblCashAmount.setText(new CurrencyRules().getFormattedAmount(cashAmount, Locale.getDefault()));
         });
     }
 }

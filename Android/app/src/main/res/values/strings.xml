@@ -97,6 +97,10 @@
     <string name="checkout_complete_customer_message">Thanks for shopping with us - click the
         button below to return to the Order Entry screen.</string>
     <string name="checkout_complete_groovy">Groovy!</string>
+    <string name="checkout_insufficient_amount_title">Insufficient amount!</string>
+    <string name="checkout_insufficient_amount_message">Oh No! It looks like that amount is less than the cart amount!</string>
+    <string name="checkout_confirm_title">Confirming Payment</string>
+    <string name="checkout_confirm_message">Change due: </string>
 
     <!-- Payment Types -->
     <string name="credit">Credit</string>
