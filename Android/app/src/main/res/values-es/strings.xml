@@ -101,6 +101,10 @@
     <string name="checkout_complete_customer_message">Gracias por comprar con nosotros: haga
         clic en el botón a continuación para volver a la pantalla de Entrada de pedidos.</string>
     <string name="checkout_complete_groovy">¡Maravilloso!</string>
+    <string name="checkout_insufficient_amount_title">Cantidad insuficiente!</string>
+    <string name="checkout_insufficient_amount_message">Oh No! Parece que esa cantidad es menor que la del carrito!</string>
+    <string name="checkout_confirm_title">Confirmación de pago</string>
+    <string name="checkout_confirm_message">Cambiar debido a: </string>
 
     <!-- Payment Types -->
     <string name="credit">Crédito</string>
@@ -118,6 +122,12 @@
     <string name="keypad_9">9</string>
     <string name="keypad_00">00</string>
     <string name="keypad_0">0</string>
+
+    <!--    Main Fragment -->
+    <string name="learn_how_to_start_taking_payments">Aprenda cómo comenzar a aceptar pagos!</string>
+
+    <!-- Content Descriptions   -->
+    <string name="description_product_icon">Icono de producto</string>
 
     <!-- Progress / Tasks -->
     <string-array name="progress_dialog_messages">
