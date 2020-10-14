@@ -106,6 +106,9 @@
     <string name="keypad_00">00</string>
     <string name="keypad_0">0</string>
 
+    <!--    Main Fragment -->
+    <string name="learn_how_to_start_taking_payments">了解如何开始付款！</string>
+
     <!-- Progress / Tasks -->
     <string-array name="progress_dialog_messages">
         <item>运算数字&#8230;</item>
