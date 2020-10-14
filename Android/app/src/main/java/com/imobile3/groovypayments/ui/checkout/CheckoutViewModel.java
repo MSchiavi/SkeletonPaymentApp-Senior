@@ -22,6 +22,12 @@ public class CheckoutViewModel extends ViewModel {
 
     private PaymentTypeRepository mRepository;
 
+    //Payment amount LiveData objects to be used when editing how much will be paid.
+    private MutableLiveData<Long> _paymentAmount = new MutableLiveData<>(0L);
+    public LiveData<Long> paymentAmountObservable() {
+        return _paymentAmount;
+    }
+
     CheckoutViewModel(PaymentTypeRepository repository) {
         mRepository = repository;
     }
@@ -39,4 +45,29 @@ public class CheckoutViewModel extends ViewModel {
 
         return observable;
     }
+
+    public void setPaymentAmount(Long amount){
+        _paymentAmount.postValue(amount);
+    }
+
+    public void pushPaymentAmount(Long amount){
+        Long paymentAmount = _paymentAmount.getValue();
+        if(paymentAmount == null){
+            paymentAmount = 0L;
+        }
+        paymentAmount = paymentAmount*10 + amount;
+        System.out.println(paymentAmount);
+        _paymentAmount.postValue(paymentAmount);
+    }
+
+    public void popPaymentAmount(){
+        Long paymentAmount = _paymentAmount.getValue();
+        if(paymentAmount != null){
+            paymentAmount = paymentAmount / 10;
+            _paymentAmount.postValue(paymentAmount);
+            System.out.println(paymentAmount);
+        }
+    }
+
+
 }
