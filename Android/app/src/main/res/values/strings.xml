@@ -115,6 +115,9 @@
     <string name="keypad_00">00</string>
     <string name="keypad_0">0</string>
 
+    <!--    Main Fragment -->
+    <string name="learn_how_to_start_taking_payments">Learn how to start taking payments!</string>
+
     <!-- Content Descriptions   -->
     <string name="description_product_icon">Product Icon</string>
 

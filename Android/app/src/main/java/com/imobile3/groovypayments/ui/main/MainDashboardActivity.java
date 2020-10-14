@@ -106,7 +106,7 @@ public class MainDashboardActivity extends BaseActivity {
                 CommonAlertDialog dialog = new CommonAlertDialog(this);
                 dialog.setTitle(R.string.common_under_construction);
                 dialog.setMessage(R.string.under_construction_alert_message);
-                dialog.setNeutralButton("ACKNOWLEDGED",v -> {
+                dialog.setNeutralButton(getString(R.string.common_acknowledged),v -> {
                     dialog.hide();
                 });
                 dialog.show();
