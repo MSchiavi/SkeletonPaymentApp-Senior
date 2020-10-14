@@ -22,6 +22,7 @@ import com.imobile3.groovypayments.ui.BaseActivity;
 import com.imobile3.groovypayments.ui.adapter.PaymentTypeListAdapter;
 import com.imobile3.groovypayments.ui.dialog.ProgressDialog;
 import com.imobile3.groovypayments.utils.AnimUtil;
+import com.imobile3.groovypayments.utils.JsonHelper;
 import com.imobile3.groovypayments.utils.SoftKeyboardHelper;
 import com.stripe.android.ApiResultCallback;
 import com.stripe.android.PaymentConfiguration;
@@ -185,6 +186,12 @@ public class CheckoutActivity extends BaseActivity {
             PaymentIntent intent = result.getIntent();
             if (intent.getStatus() == PaymentIntent.Status.Succeeded) {
                 CartManager.getInstance().addCreditPayment(PaymentResponseHelper.transform(intent));
+
+                activity.showAlertDialog(
+                        "Payment Complete",
+                        JsonHelper.toPrettyJson(intent),
+                        null);
+
                 //TODO This is probably where the checkout Finish Activity gets launched
             } else if (intent.getStatus() == PaymentIntent.Status.RequiresPaymentMethod) {
 
