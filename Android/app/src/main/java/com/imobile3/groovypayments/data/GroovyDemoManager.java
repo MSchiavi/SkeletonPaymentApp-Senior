@@ -11,6 +11,7 @@ import com.imobile3.groovypayments.data.entities.CartTaxEntity;
 import com.imobile3.groovypayments.data.entities.ProductEntity;
 import com.imobile3.groovypayments.data.entities.ProductTaxJunctionEntity;
 import com.imobile3.groovypayments.data.entities.TaxEntity;
+import com.imobile3.groovypayments.data.entities.UserEntity;
 import com.imobile3.groovypayments.data.model.Cart;
 
 import androidx.annotation.NonNull;
@@ -78,6 +79,8 @@ public final class GroovyDemoManager {
             new InventoryWorker().run();
 
             new OrderHistoryWorker().run();
+
+            new UserWorker().run();
 
             // All done!
             return null;
@@ -156,6 +159,17 @@ public final class GroovyDemoManager {
             DatabaseHelper.getInstance().getDatabase().getCartTaxDao().insertCartTaxes(
                     cartTaxEntities.toArray(new CartTaxEntity[0]));
 
+        }
+    }
+
+    private class UserWorker implements Runnable {
+
+        @Override
+        public void run() {
+            List<UserEntity> userEntities = TestDataRepository.getInstance().getUsers(TestDataRepository.Environment.GroovyDemo);
+
+            DatabaseHelper.getInstance().getDatabase().getUserDao().insertUsers(
+                    userEntities.toArray(new UserEntity[0]));
         }
     }
 }
