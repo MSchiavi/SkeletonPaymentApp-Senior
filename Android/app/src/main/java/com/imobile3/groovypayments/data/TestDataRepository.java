@@ -6,6 +6,7 @@ import com.imobile3.groovypayments.data.entities.CartTaxEntity;
 import com.imobile3.groovypayments.data.entities.ProductEntity;
 import com.imobile3.groovypayments.data.entities.ProductTaxJunctionEntity;
 import com.imobile3.groovypayments.data.entities.TaxEntity;
+import com.imobile3.groovypayments.data.entities.UserEntity;
 import com.imobile3.groovypayments.data.enums.GroovyColor;
 import com.imobile3.groovypayments.data.enums.GroovyIcon;
 import com.imobile3.groovypayments.data.utils.CartBuilder;
@@ -13,6 +14,7 @@ import com.imobile3.groovypayments.data.utils.CartProductBuilder;
 import com.imobile3.groovypayments.data.utils.CartTaxBuilder;
 import com.imobile3.groovypayments.data.utils.ProductBuilder;
 import com.imobile3.groovypayments.data.utils.TaxBuilder;
+import com.imobile3.groovypayments.data.utils.UserBuilder;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -450,6 +452,66 @@ public class TestDataRepository {
             }
         }
 
+        return results;
+    }
+
+    private final long USER_ID_1 = 801L;
+    private final long USER_ID_2 = 802L;
+    private final long USER_ID_3 = 803L;
+    private final long USER_ID_4 = 804L;
+    private final long USER_ID_5 = 805L;
+    private final long USER_ID_6 = 806L;
+    private final long USER_ID_7 = 807L;
+    private final long USER_ID_8 = 808L;
+
+    @NonNull
+    public List<UserEntity> getUsers(@NonNull Environment environment) {
+        List<UserEntity> results = new ArrayList<>();
+
+        //TODO password encryption needs to be taken care of at some point.
+
+        if (Environment.GroovyDemo == environment) {
+            results.add(UserBuilder.build(USER_ID_1, getRandomFirstName(),
+                    getRandomLastName(),
+                    getRandomFullName(),
+                    getRandomEmailAddress(),
+                    "test"));
+            results.add(UserBuilder.build(USER_ID_2, getRandomFirstName(),
+                    getRandomLastName(),
+                    getRandomFullName(),
+                    getRandomEmailAddress(),
+                    "test"));
+            results.add(UserBuilder.build(USER_ID_3, getRandomFirstName(),
+                    getRandomLastName(),
+                    getRandomFullName(),
+                    getRandomEmailAddress(),
+                    "test"));
+            results.add(UserBuilder.build(USER_ID_4, getRandomFirstName(),
+                    getRandomLastName(),
+                    getRandomFullName(),
+                    getRandomEmailAddress(),
+                    "test"));
+            results.add(UserBuilder.build(USER_ID_5, getRandomFirstName(),
+                    getRandomLastName(),
+                    getRandomFullName(),
+                    getRandomEmailAddress(),
+                    "test"));
+            results.add(UserBuilder.build(USER_ID_6, getRandomFirstName(),
+                    getRandomLastName(),
+                    getRandomFullName(),
+                    getRandomEmailAddress(),
+                    "test"));
+            results.add(UserBuilder.build(USER_ID_7, getRandomFirstName(),
+                    getRandomLastName(),
+                    getRandomFullName(),
+                    getRandomEmailAddress(),
+                    "test"));
+            results.add(UserBuilder.build(USER_ID_8, getRandomFirstName(),
+                    getRandomLastName(),
+                    getRandomFullName(),
+                    getRandomEmailAddress(),
+                    "test"));
+        }
         return results;
     }
 

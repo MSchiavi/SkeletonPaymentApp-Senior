@@ -118,6 +118,9 @@
     <!--    Main Fragment -->
     <string name="learn_how_to_start_taking_payments">Learn how to start taking payments!</string>
 
+    <!-- Content Descriptions   -->
+    <string name="description_product_icon">Product Icon</string>
+
     <!-- Progress / Tasks -->
     <string-array name="progress_dialog_messages">
         <item>Crunching numbers&#8230;</item>

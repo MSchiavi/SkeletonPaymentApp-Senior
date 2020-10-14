@@ -91,4 +91,11 @@ public final class CartRules {
         }
         return builder.toString();
     }
+
+    public String getCartTotal() {
+        if (mCart.getProducts() != null){
+            return "$ " +Long.toString(mCart.getGrandTotal()/100L);
+        }
+        return "";
+    }
 }

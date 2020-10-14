@@ -122,6 +122,9 @@
     <!--    Main Fragment -->
     <string name="learn_how_to_start_taking_payments">Aprenda cómo comenzar a aceptar pagos!</string>
 
+    <!-- Content Descriptions   -->
+    <string name="description_product_icon">Icono de producto</string>
+
     <!-- Progress / Tasks -->
     <string-array name="progress_dialog_messages">
         <item>Analizando los números&#8230;</item>

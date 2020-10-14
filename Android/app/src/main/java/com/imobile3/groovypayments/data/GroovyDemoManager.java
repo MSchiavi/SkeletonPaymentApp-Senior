@@ -4,13 +4,17 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.imobile3.groovypayments.MainApplication;
+import com.imobile3.groovypayments.calculation.CartCalculator;
+import com.imobile3.groovypayments.data.entities.CartEntity;
+import com.imobile3.groovypayments.data.entities.CartProductEntity;
+import com.imobile3.groovypayments.data.entities.CartTaxEntity;
 import com.imobile3.groovypayments.data.entities.ProductEntity;
-import com.imobile3.groovypayments.data.enums.GroovyColor;
-import com.imobile3.groovypayments.data.enums.GroovyIcon;
-import com.imobile3.groovypayments.data.utils.ProductBuilder;
+import com.imobile3.groovypayments.data.entities.ProductTaxJunctionEntity;
+import com.imobile3.groovypayments.data.entities.TaxEntity;
+import com.imobile3.groovypayments.data.entities.UserEntity;
+import com.imobile3.groovypayments.data.model.Cart;
 
 import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,19 +76,11 @@ public final class GroovyDemoManager {
             // Initialize a new database instance.
             DatabaseHelper.getInstance().init(mContext);
 
-            List<ProductEntity> productEntities = new ArrayList<>();
+            new InventoryWorker().run();
 
-            // Add one product.
-            productEntities.add(ProductBuilder.build(101L,
-                    "Tasty Chicken Sandwich",
-                    "Chicken, lettuce, tomato and mayo",
-                    750L, 200L,
-                    GroovyIcon.Sandwich, GroovyColor.Yellow));
+            new OrderHistoryWorker().run();
 
-            // Insert entities into database instance.
-            DatabaseHelper.getInstance().getDatabase().getProductDao()
-                    .insertProducts(
-                            productEntities.toArray(new ProductEntity[0]));
+            new UserWorker().run();
 
             // All done!
             return null;
@@ -94,6 +90,86 @@ public final class GroovyDemoManager {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             mCallback.onDatabaseReset();
+        }
+    }
+
+    private class InventoryWorker implements Runnable {
+
+        @Override
+        public void run() {
+
+            // Found testData in testRepository
+            List<ProductEntity> productEntities = TestDataRepository.getInstance().getProducts(TestDataRepository.Environment.GroovyDemo);
+
+            List<TaxEntity> taxEntities = TestDataRepository.getInstance().getTaxes(TestDataRepository.Environment.GroovyDemo);
+
+            List<ProductTaxJunctionEntity> productTaxJunctionEntities = new ArrayList<>();
+
+            for (int i = 0; i < productEntities.size(); i++) {
+                productTaxJunctionEntities.addAll(TestDataRepository.getInstance().getProductTaxJunctions(productEntities.get(i), taxEntities));
+            }
+            // Insert entities into database instance.
+            DatabaseHelper.getInstance().getDatabase().getProductDao()
+                    .insertProducts(
+                            productEntities.toArray(new ProductEntity[0]));
+
+            DatabaseHelper.getInstance().getDatabase().getTaxDao().insertTaxes(
+                    taxEntities.toArray(new TaxEntity[0]));
+
+            DatabaseHelper.getInstance().getDatabase().getProductTaxJunctionDao().insertProductTaxJunctions(
+                    productTaxJunctionEntities.toArray(new ProductTaxJunctionEntity[0]));
+
+        }
+    }
+
+    private class OrderHistoryWorker implements Runnable {
+
+        @Override
+        public void run() {
+            List<CartEntity> cartEntities = TestDataRepository.getInstance().getCarts(TestDataRepository.Environment.GroovyDemo);
+            List<Cart> cartResults = new ArrayList<>();
+
+            List<CartProductEntity> cartProductEntities = new ArrayList<>();
+            List<CartTaxEntity> cartTaxEntities = new ArrayList<>();
+
+            for(int i = 0; i < cartEntities.size(); i++){
+                Cart cart = new Cart(cartEntities.get(i));
+                cart.setProducts(TestDataRepository.getInstance().getCartProducts(TestDataRepository.Environment.GroovyDemo,cartEntities.get(i)));
+                cart.setTaxes(TestDataRepository.getInstance().getCartTaxes(TestDataRepository.Environment.GroovyDemo,cartEntities.get(i)));
+
+
+                new CartCalculator(cart).calculate();
+                cartResults.add(cart);
+
+
+                cartProductEntities.addAll(cart.getProducts());
+                cartTaxEntities.addAll(cart.getTaxes());
+            }
+
+            //Need to remove the old CartEntities and replace with the totals calculated.
+            cartEntities.clear();
+            cartEntities.addAll(cartResults);
+
+            DatabaseHelper.getInstance().getDatabase().getCartDao().insertCarts(
+                    cartEntities.toArray(new CartEntity[0]));
+
+            DatabaseHelper.getInstance().getDatabase().getCartProductDao().insertCartProducts(
+                    cartProductEntities.toArray(new CartProductEntity[0]));
+
+            DatabaseHelper.getInstance().getDatabase().getCartTaxDao().insertCartTaxes(
+                    cartTaxEntities.toArray(new CartTaxEntity[0]));
+
+        }
+    }
+
+    private class UserWorker implements Runnable {
+
+        @Override
+        public void run() {
+            List<UserEntity> userEntities = TestDataRepository.getInstance().getUsers(TestDataRepository.Environment.GroovyDemo);
+
+            DatabaseHelper.getInstance().getDatabase().getUserDao().insertUsers(
+                    userEntities.toArray(new UserEntity[0]));
         }
     }
 }
