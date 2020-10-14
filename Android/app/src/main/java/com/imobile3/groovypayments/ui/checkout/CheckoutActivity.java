@@ -22,6 +22,7 @@ import com.stripe.android.ApiResultCallback;
 import com.stripe.android.PaymentConfiguration;
 import com.stripe.android.PaymentIntentResult;
 import com.stripe.android.Stripe;
+import com.stripe.android.model.ConfirmPaymentIntentParams;
 import com.stripe.android.model.PaymentMethodCreateParams;
 import com.stripe.android.view.CardInputWidget;
 
@@ -182,7 +183,6 @@ public class CheckoutActivity extends BaseActivity {
     private void handlePayWithCreditClick() {
         PaymentMethodCreateParams params = mCreditCardInputWidget.getPaymentMethodCreateParams();
         if (params != null) {
-            // TODO: Task #008 "Generate the Client Secret... On the Client!"
             /*
             1. Invoke WebServiceManager.getInstance().generateClientSecret()
 
@@ -196,6 +196,31 @@ public class CheckoutActivity extends BaseActivity {
             3. In the onClientSecretGenerated() callback, construct a new Stripe instance,
                then invoke stripe.confirmPayment()
              */
+            showProgressDialog();
+            WebServiceManager.getInstance().generateClientSecret(
+                    getApplicationContext(),
+                    CartManager.getInstance().getCart().getGrandTotal(),
+                    new WebServiceManager.ClientSecretCallback() {
+                        @Override
+                        public void onClientSecretError(@NonNull String message) {
+                            dismissProgressDialog();
+                            showAlertDialog("Error generating Client Secret",
+                                    message,
+                                    getString(R.string.common_acknowledged),
+                                    null);
+                        }
+
+                        @Override
+                        public void onClientSecretGenerated(@NonNull String clientSecret) {
+                            ConfirmPaymentIntentParams confirmParams = ConfirmPaymentIntentParams.createWithPaymentMethodCreateParams(params, clientSecret);
+                            Stripe stripe = new Stripe(
+                                    getApplicationContext(),
+                                    PaymentConfiguration.getInstance(getApplicationContext()).getPublishableKey());
+                            stripe.confirmPayment(CheckoutActivity.this, confirmParams);
+                            dismissProgressDialog();
+                        }
+                    }
+            );
         }
     }
 
