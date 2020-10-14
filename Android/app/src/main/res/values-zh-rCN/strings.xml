@@ -1,0 +1,119 @@
+<resources>
+
+    <!--  These are direct translations from google translate so some may be off and would have to be checked
+                 With a Native speaker. I just wanted to see how mandarin would be handled for fun! -->
+
+    <string name="app_name">Groovy移动支付</string>
+
+    <!-- Common -->
+    <string name="common_ok">好</string>
+    <string name="common_cancel">取消</string>
+    <string name="common_back">背部</string>
+    <string name="common_change">更改</string>
+    <string name="common_order_entry">订单输入</string>
+    <string name="common_management">管理</string>
+    <string name="common_time_tracking">时间跟踪</string>
+    <string name="common_under_construction">正在施工</string>
+    <string name="common_acknowledged">已确认</string>
+    <string name="common_order_history">订单历史</string>
+    <string name="common_secret_functions">秘密功能</string>
+    <string name="common_user_profile">用户资料</string>
+    <string name="common_lorem_ipsum_description">滚滚长江东逝水，浪花淘尽英雄。是非成败转头空，青山依旧在，几度夕阳红。白发渔樵江渚上，惯看秋月春风。一壶浊酒喜相逢，古今多少事，都付笑谈中。
+是非成败转头空，青山依旧在，惯看秋月春风。一壶浊酒喜相逢，古今多少事，滚滚长江东逝水，浪花淘尽英雄。 几度夕阳红。白发渔樵江渚上，都付笑谈中.......</string>
+    <string name="reports">报告书</string>
+
+    <!-- Login -->
+    <string name="prompt_email">电子邮件</string>
+    <string name="prompt_password">密码</string>
+    <string name="action_sign_in">登录或注册</string>
+    <string name="skip_login">跳过登录</string>
+    <string name="action_sign_in_short">登入</string>
+    <string name="welcome">“欢迎光临！”</string>
+    <string name="invalid_username">用户名无效</string>
+    <string name="invalid_password">密码必须大于5个字符</string>
+    <string name="login_failed">“登录失败”</string>
+
+    <!-- Main Dashboard -->
+    <string name="order_entry_description">浏览商店库存或将产品出售给客户。</string>
+    <string name="user_profile_description">查看或编辑您当前的用户设置。</string>
+    <string name="management_description">管理销售点设置。</string>
+    <string name="time_tracking_description">进/出时钟并查看您的近期活动。</string>
+    <string name="order_history_description">查看此销售点上已完成的历史订单。</string>
+    <string name="secret_functions_description">超级机密区域，您可以在其中执行特殊功能，例如重置演示数据库</string>
+    <string name="placeholder_description">这是一个临时占位符。</string>
+    <string name="under_construction_alert_message">应用程序的这一领域仍然 正在施工。随时展示和培养自己的技能。</string>
+    <string name="main_dashboard_subtitle">你想去哪里？</string>
+    <string name="reports_description">根据每日报告查看产品受欢迎度图表。</string>
+
+    <!-- User Profile -->
+    <string name="user_profile_subtitle_format">欢迎 %1$s.</string>
+    <string name="user_profile_username">用户名:</string>
+    <string name="user_profile_email">电子邮件:</string>
+    <string name="user_profile_hours_week">小时 (星期):</string>
+
+    <!-- Secret Functions -->
+    <string name="secret_functions_subtitle">最高机密区域。</string>
+    <string name="secret_functions_reset_database">重置数据库</string>
+    <string name="secret_functions_erase_cart">清除购物车</string>
+    <string name="secret_functions_alert_title">执行功能</string>
+    <string name="secret_functions_alert_button">收到。</string>
+    <string name="secret_functions_alert_reset_database">演示数据库成功重置（所有原始演示数据已恢复）。该消息将自毁。</string>
+    <string name="secret_functions_alert_erase_cart">您当前的购物车实例已被擦除。几乎就像您的购物车不存在&#8230;</string>
+
+    <!-- Order Entry -->
+    <string name="order_entry_subtitle">将产品添加到订单。</string>
+    <string name="order_entry_subtitle_checkout">点击右上角的图标以结帐。</string>
+
+    <!-- Order History -->
+    <string name="order_history_subtitle">下面列出了最近的订单。</string>
+    <string name="order_history_alert_title">未实现</string>
+    <string name="order_history_alert_button">当然.</string>
+    <string name="order_history_alert_message">订单历史记录功能未实现。请停止单击列表项。</string>
+    <string name="order_history_alert_warning_title">停下来</string>
+    <string name="order_history_alert_warning_button">任何.</string>
+    <string name="order_history_alert_warning_message">警告您不要单击列表项。管理员已收到通知.</string>
+
+    <!--Daily Report-->
+    <string name="daily_report_subtitle">每日报告</string>
+    <string name="daily_report_product_popularity">产品人气</string>
+    <string name="daily_report_progress_message">加载图</string>
+
+    <!-- Checkout -->
+    <string name="checkout_subtitle">您将如何付款？</string>
+    <string name="checkout_with_cash">有现金</string>
+    <string name="checkout_with_credit">有信用</string>
+    <string name="checkout_pay_cash">工资 (现金)</string>
+    <string name="checkout_pay_credit">工资 (信用)</string>
+    <string name="checkout_complete_title_message">恭喜你！您的付款已获批准！</string>
+    <string name="checkout_complete_subtitle">订单完成！</string>
+    <string name="checkout_complete_customer_message">感谢您与我们一起购物-单击下面的按钮返回到“订单输入”屏幕。</string>
+    <string name="checkout_complete_groovy">Groovy!</string>
+
+    <!-- Payment Types -->
+    <string name="credit">信用</string>
+    <string name="cash">现金</string>
+
+    <!-- Keypad -->
+    <string name="keypad_1">1</string>
+    <string name="keypad_2">2</string>
+    <string name="keypad_3">3</string>
+    <string name="keypad_4">4</string>
+    <string name="keypad_5">5</string>
+    <string name="keypad_6">6</string>
+    <string name="keypad_7">7</string>
+    <string name="keypad_8">8</string>
+    <string name="keypad_9">9</string>
+    <string name="keypad_00">00</string>
+    <string name="keypad_0">0</string>
+
+    <!-- Progress / Tasks -->
+    <string-array name="progress_dialog_messages">
+        <item>运算数字&#8230;</item>
+        <item>评估数据&#8230;</item>
+        <item>分析值&#8230;</item>
+        <item>运行算法&#8230;</item>
+        <item>银行支票&#8230;</item>
+        <item>使用机器学习&#8230;</item>
+        <item>数豆&#8230;</item>
+    </string-array>
+</resources>
