@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.imobile3.groovypayments.MainApplication;
@@ -13,6 +16,7 @@ import com.imobile3.groovypayments.data.model.PaymentType;
 import com.imobile3.groovypayments.logging.LogHelper;
 import com.imobile3.groovypayments.manager.CartManager;
 import com.imobile3.groovypayments.network.WebServiceManager;
+import com.imobile3.groovypayments.rules.CurrencyRules;
 import com.imobile3.groovypayments.ui.BaseActivity;
 import com.imobile3.groovypayments.ui.adapter.PaymentTypeListAdapter;
 import com.imobile3.groovypayments.ui.dialog.ProgressDialog;
@@ -46,6 +50,8 @@ public class CheckoutActivity extends BaseActivity {
     private View mPayWithCashView;
     private TextView mLblCashAmount;
     private Button mBtnPayWithCash;
+
+    private TableLayout keypad;
 
     // Credit
     private View mPayWithCreditView;
@@ -81,6 +87,11 @@ public class CheckoutActivity extends BaseActivity {
         mLblCashAmount = findViewById(R.id.label_cash_amount);
         mBtnPayWithCash = findViewById(R.id.btn_pay_with_cash);
         mBtnPayWithCash.setOnClickListener(v -> handlePayWithCashClick());
+
+        //Keypad Initialization
+        keypad = findViewById(R.id.keypad);
+        initCashKeyPad(keypad);
+        initLblCashAmountObservers();
 
         // Credit
         mPayWithCreditView = findViewById(R.id.pay_with_credit_view);
@@ -239,6 +250,9 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void updateAmounts() {
+        //Initialize the amount in the view model
+        mViewModel.setPaymentAmount(CartManager.getInstance().getCart().getGrandTotal());
+
         String formattedGrandTotal = CartManager.getInstance()
                 .getFormattedGrandTotal(Locale.getDefault());
         mLblCashAmount.setText(formattedGrandTotal);
@@ -246,10 +260,18 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void handlePayWithCashClick() {
-        showAlertDialog(
-                R.string.common_under_construction,
-                R.string.under_construction_alert_message,
-                R.string.common_acknowledged);
+        long change = mViewModel.changeDue(CartManager.getInstance().getCart().getGrandTotal());
+        if (change < 0) {
+            showAlertDialog(R.string.checkout_insufficient_amount_title, R.string.checkout_insufficient_amount_message, R.string.common_acknowledged);
+        } else {
+            showAlertDialog(
+                    getString(R.string.checkout_confirm_title),
+                    getString(R.string.checkout_confirm_message) + " " + new CurrencyRules().getFormattedAmount(change, Locale.getDefault()),
+                    v -> {
+                        //TODO go to CheckoutComplete Activity
+                    });
+        }
+
     }
 
     //region (Animated) View Transitions
@@ -348,5 +370,32 @@ public class CheckoutActivity extends BaseActivity {
         startActivity(new Intent(this, CheckoutCompleteActivity.class));
         // Remove this activity from the stack.
         finish();
+    }
+
+    private void initCashKeyPad(TableLayout keypad) {
+        for (int i = 0; i < keypad.getChildCount(); i++) {
+            View tableRow = keypad.getChildAt(i);
+            if (tableRow instanceof TableRow) {
+                for (int j = 0; j < ((TableRow) tableRow).getChildCount(); j++) {
+                    ((TableRow) tableRow).getChildAt(j).setOnClickListener(v -> {
+                        if (v instanceof ImageButton) {
+                            mViewModel.popPaymentAmount();
+                        } else if (v instanceof Button) {
+                            if (((Button) v).getText() == getString(R.string.keypad_00)) {
+                                mViewModel.setPaymentAmount(0L);
+                            } else {
+                                mViewModel.pushPaymentAmount(Long.parseLong(((Button) v).getText().toString()));
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    }
+
+    private void initLblCashAmountObservers() {
+        mViewModel.paymentAmountObservable().observe(this, cashAmount -> {
+            mLblCashAmount.setText(new CurrencyRules().getFormattedAmount(cashAmount, Locale.getDefault()));
+        });
     }
 }
