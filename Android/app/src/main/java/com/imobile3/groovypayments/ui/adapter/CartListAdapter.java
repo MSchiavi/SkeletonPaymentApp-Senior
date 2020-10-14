@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CartListAdapter
         extends RecyclerView.Adapter<CartListAdapter.ViewHolder> {
@@ -62,6 +63,9 @@ public class CartListAdapter
         holder.icon.setImageResource(GroovyIcon.Bookmarklet.drawableRes);
         holder.icon.setBackground(
                 ContextCompat.getDrawable(mContext, GroovyColor.Orange.colorRes));
+
+        holder.labelTotal.setText(rules.getCartTotal());
+        holder.labelDate.setText(rules.getFormattedDate(Locale.US));
 
         holder.description.setText(rules.getOrderHistoryDescription());
         holder.description.setTextColor(
