@@ -13,6 +13,7 @@ import com.imobile3.groovypayments.data.model.PaymentType;
 import com.imobile3.groovypayments.logging.LogHelper;
 import com.imobile3.groovypayments.manager.CartManager;
 import com.imobile3.groovypayments.network.WebServiceManager;
+import com.imobile3.groovypayments.network.domainobjects.PaymentResponseHelper;
 import com.imobile3.groovypayments.ui.BaseActivity;
 import com.imobile3.groovypayments.ui.adapter.PaymentTypeListAdapter;
 import com.imobile3.groovypayments.ui.dialog.ProgressDialog;
@@ -23,6 +24,7 @@ import com.stripe.android.PaymentConfiguration;
 import com.stripe.android.PaymentIntentResult;
 import com.stripe.android.Stripe;
 import com.stripe.android.model.ConfirmPaymentIntentParams;
+import com.stripe.android.model.PaymentIntent;
 import com.stripe.android.model.PaymentMethodCreateParams;
 import com.stripe.android.view.CardInputWidget;
 
@@ -165,7 +167,28 @@ public class CheckoutActivity extends BaseActivity {
 
         @Override
         public void onSuccess(@NonNull PaymentIntentResult result) {
-            // TODO: Invoke CartManager.getInstance().addCreditPayment()
+            final CheckoutActivity activity = activityRef.get();
+            if (activity == null) {
+                return;
+            }
+            PaymentIntent intent = result.getIntent();
+            if (intent.getStatus() == PaymentIntent.Status.Succeeded) {
+                CartManager.getInstance().addCreditPayment(PaymentResponseHelper.transform(intent));
+                //TODO This is probably where the checkout Finish Activity gets launched
+            } else if (intent.getStatus() == PaymentIntent.Status.RequiresPaymentMethod) {
+
+                activity.showAlertDialog(
+                        "Requires Payment Method",
+                        "Something seems to be wrong with your card!",
+                        activity.getString(R.string.common_acknowledged), null);
+            } else if (intent.getStatus() == PaymentIntent.Status.RequiresAction) {
+
+                activity.showAlertDialog(
+                        "Requires Action",
+                        "You may need to authenticate this transaction!",
+                        activity.getString(R.string.common_acknowledged), null);
+
+            }
         }
 
         @Override
