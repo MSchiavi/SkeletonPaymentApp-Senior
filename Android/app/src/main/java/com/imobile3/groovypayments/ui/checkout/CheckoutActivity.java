@@ -184,9 +184,9 @@ public class CheckoutActivity extends BaseActivity {
                 return;
             }
             PaymentIntent intent = result.getIntent();
+            activity.dismissProgressDialog();
             if (intent.getStatus() == PaymentIntent.Status.Succeeded) {
                 CartManager.getInstance().addCreditPayment(PaymentResponseHelper.transform(intent));
-
                 activity.showAlertDialog(
                         activity.getString(R.string.payment_complete_title),
                         JsonHelper.toPrettyJson(intent),
@@ -258,7 +258,6 @@ public class CheckoutActivity extends BaseActivity {
                                     getApplicationContext(),
                                     PaymentConfiguration.getInstance(getApplicationContext()).getPublishableKey());
                             stripe.confirmPayment(CheckoutActivity.this, confirmParams);
-                            dismissProgressDialog();
                         }
                     }
             );
