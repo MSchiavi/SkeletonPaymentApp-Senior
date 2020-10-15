@@ -17,6 +17,10 @@ public interface UserDao {
     @Query("SELECT * FROM user")
     List<UserEntity> getUsers();
 
+    // Limited to 1 User, Not sure if there is code in place protecting from dupe usernames.
+    @Query("SELECT * FROM user WHERE email = :email LIMIT 1")
+    UserEntity getUserByEmail(String email);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUsers(UserEntity... values);
 
@@ -25,4 +29,6 @@ public interface UserDao {
 
     @Delete
     void deleteUsers(UserEntity... values);
+
+
 }

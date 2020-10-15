@@ -471,46 +471,46 @@ public class TestDataRepository {
         //TODO password encryption needs to be taken care of at some point.
 
         if (Environment.GroovyDemo == environment) {
-            results.add(UserBuilder.build(USER_ID_1, getRandomFirstName(),
-                    getRandomLastName(),
+            results.add(UserBuilder.build(USER_ID_1, "Bob",
+                    "Landers",
+                    "Bob Landers",
+                    mRandomEmailAddresses[0],
+                    "test123"));
+            results.add(UserBuilder.build(USER_ID_2, "Luther",
+                    "Graves",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_2, getRandomFirstName(),
-                    getRandomLastName(),
+                    mRandomEmailAddresses[1],
+                    "test123"));
+            results.add(UserBuilder.build(USER_ID_3, "Troy",
+                    "Johnson",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_3, getRandomFirstName(),
-                    getRandomLastName(),
+                    mRandomEmailAddresses[2],
+                    "test123"));
+            results.add(UserBuilder.build(USER_ID_4, "Cindy",
+                    "Adams",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_4, getRandomFirstName(),
-                    getRandomLastName(),
+                    mRandomEmailAddresses[3],
+                    "test123"));
+            results.add(UserBuilder.build(USER_ID_5, "Rachel",
+                    "Smith",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_5, getRandomFirstName(),
-                    getRandomLastName(),
+                    mRandomEmailAddresses[4],
+                    "test123"));
+            results.add(UserBuilder.build(USER_ID_6, "Gail",
+                    "Gehrig",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_6, getRandomFirstName(),
-                    getRandomLastName(),
+                    mRandomEmailAddresses[5],
+                    "test123"));
+            results.add(UserBuilder.build(USER_ID_7, "Liz",
+                    "Thomas",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_7, getRandomFirstName(),
-                    getRandomLastName(),
+                    mRandomEmailAddresses[6],
+                    "test123"));
+            results.add(UserBuilder.build(USER_ID_8, "Kevin",
+                    "Schmidt",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_8, getRandomFirstName(),
-                    getRandomLastName(),
-                    getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
+                    mRandomEmailAddresses[7],
+                    "test123"));
         }
         return results;
     }
