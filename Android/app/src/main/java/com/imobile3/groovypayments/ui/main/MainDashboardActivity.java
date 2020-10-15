@@ -90,7 +90,7 @@ public class MainDashboardActivity extends BaseActivity {
                 break;
 
             case UserProfile:
-                startActivity(new Intent(this, nextActivity()));
+                startActivity(nextActivity());
                 break;
 
             case Management:
@@ -130,16 +130,17 @@ public class MainDashboardActivity extends BaseActivity {
     }
 
     //used for the UserProfile navigation
-    private Class nextActivity(){
+    private Intent nextActivity(){
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.logged_in_user_id_sp_name),MODE_PRIVATE);
         long id = sharedPreferences.getLong(getString(R.string.logged_in_user_id_key),-1);
-        Class nextActivityClass;
+        Intent intent;
         if(id == -1){
             Toast.makeText(this,getString(R.string.not_logged_in_toast), Toast.LENGTH_LONG).show();
-            nextActivityClass = LoginActivity.class;
+            // Since we are sending them back to the LoginActivity we should clear the stack
+            intent = new Intent(this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         }else{
-            nextActivityClass = UserProfileActivity.class;
+            intent = new Intent(this, UserProfileActivity.class);
         }
-        return nextActivityClass;
+        return intent;
     }
 }

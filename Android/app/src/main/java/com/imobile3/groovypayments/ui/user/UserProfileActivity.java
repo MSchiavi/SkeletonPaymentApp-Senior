@@ -92,7 +92,7 @@ public class UserProfileActivity extends BaseActivity {
             UserProfileActivity.this.startActivity(
                     new Intent(UserProfileActivity.this, MainDashboardActivity.class)
             );
-
+            finish();
         });
     }
 
