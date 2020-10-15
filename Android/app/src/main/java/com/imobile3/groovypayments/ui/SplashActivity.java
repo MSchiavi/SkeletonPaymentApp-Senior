@@ -47,8 +47,8 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void startLoginActivityLogic() {
-        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.LoggedInUserId_SP_Name),MODE_PRIVATE);
-        long id = sharedPreferences.getLong(getString(R.string.LoggedInUserId_Key),-1);
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.logged_in_user_id_sp_name),MODE_PRIVATE);
+        long id = sharedPreferences.getLong(getString(R.string.logged_in_user_id_key),-1);
         Class nextActivityClass;
 
         if(id == -1){

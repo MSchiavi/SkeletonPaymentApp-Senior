@@ -135,9 +135,9 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void updateSharedPreferenceWithId(String Id){
-        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.LoggedInUserId_SP_Name), Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.logged_in_user_id_sp_name), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putLong(getString(R.string.LoggedInUserId_Key),Long.parseLong(Id));
+        editor.putLong(getString(R.string.logged_in_user_id_key),Long.parseLong(Id));
         editor.apply();
     }
 

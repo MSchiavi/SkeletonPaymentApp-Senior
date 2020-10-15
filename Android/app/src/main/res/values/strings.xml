@@ -102,6 +102,14 @@
     <string name="checkout_insufficient_amount_message">Oh No! It looks like that amount is less than the cart amount!</string>
     <string name="checkout_confirm_title">Confirming Payment</string>
     <string name="checkout_confirm_message">Change due: </string>
+    <string name="payment_complete_title">Payment Complete</string>
+    <string name="requires_payment_method_title">Requires Payment Method</string>
+    <string name="requires_payment_method_message">Something seems to be wrong with your card!</string>
+    <string name="requires_action_title">Requires Action</string>
+    <string name="requires_action_message">You may need to authenticate this transaction!</string>
+    <string name="error_title">Error</string>
+    <string name="error_text">Woopsie!</string>
+    <string name="client_secret_error_title">Error generating Client Secret</string>
 
     <!-- Payment Types -->
     <string name="credit">Credit</string>
@@ -138,6 +146,6 @@
     </string-array>
 
     <!--    Shared Preference Key for the Logged In User's Id-->
-    <string name="LoggedInUserId_SP_Name">LoggedInUserIdSP</string>
-    <string name="LoggedInUserId_Key">LoggedInUserId</string>
+    <string name="logged_in_user_id_sp_name">LoggedInUserIdSP</string>
+    <string name="logged_in_user_id_key">LoggedInUserId</string>
 </resources>

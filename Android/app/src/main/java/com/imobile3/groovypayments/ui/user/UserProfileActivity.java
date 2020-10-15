@@ -45,8 +45,8 @@ public class UserProfileActivity extends BaseActivity {
     }
 
     private void setUpViews() {
-        SharedPreferences loggedInId = this.getSharedPreferences(getString(R.string.LoggedInUserId_SP_Name), Context.MODE_PRIVATE);
-        long id = loggedInId.getLong(getString(R.string.LoggedInUserId_Key),-1);
+        SharedPreferences loggedInId = this.getSharedPreferences(getString(R.string.logged_in_user_id_sp_name), Context.MODE_PRIVATE);
+        long id = loggedInId.getLong(getString(R.string.logged_in_user_id_key),-1);
         if(id != -1){
             userProfileViewModel.setUser(id);
         }
@@ -85,7 +85,7 @@ public class UserProfileActivity extends BaseActivity {
 
             logout.setVisibility(View.GONE);
 
-            SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.LoggedInUserId_SP_Name),MODE_PRIVATE);
+            SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.logged_in_user_id_sp_name),MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.apply();
