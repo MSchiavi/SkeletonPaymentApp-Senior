@@ -192,6 +192,7 @@ public class CheckoutActivity extends BaseActivity {
                         JsonHelper.toPrettyJson(intent),
                         v->{
                             activity.startActivity(new Intent(activity,CheckoutCompleteActivity.class));
+                            activity.finish();
                         });
             } else if (intent.getStatus() == PaymentIntent.Status.RequiresPaymentMethod) {
 
