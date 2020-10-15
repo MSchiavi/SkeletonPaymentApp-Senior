@@ -1,12 +1,18 @@
 package com.imobile3.groovypayments.ui.user;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.lifecycle.ViewModelProviders;
 
 import com.imobile3.groovypayments.R;
 import com.imobile3.groovypayments.ui.BaseActivity;
 
 public class UserProfileActivity extends BaseActivity {
+
+    private UserProfileViewModel userProfileViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +38,23 @@ public class UserProfileActivity extends BaseActivity {
 
     @Override
     protected void initViewModel() {
-        // No view model needed.
+        userProfileViewModel = ViewModelProviders.of(this,new UserProfileViewModelFactory())
+                .get(UserProfileViewModel.class);
     }
 
     private void setUpViews() {
+        SharedPreferences loggedInId = this.getSharedPreferences(getString(R.string.LoggedInUserId_SP_Name), Context.MODE_PRIVATE);
+        long id = loggedInId.getLong(getString(R.string.LoggedInUserId_Key),-1);
+        if(id != -1){
+            userProfileViewModel.setUser(id);
+        }
         TextView lblUsername = findViewById(R.id.label_username);
         TextView lblEmail = findViewById(R.id.label_email);
         TextView lblHoursWeek = findViewById(R.id.label_hours_week);
+        userProfileViewModel.getLoggedInUser().observe(this,loggedInUser -> {
+            lblUsername.setText(loggedInUser.getDisplayName());
+            lblEmail.setText(loggedInUser.getDisplayName());
+            lblHoursWeek.setText(loggedInUser.getDisplayName());
+        });
     }
 }
