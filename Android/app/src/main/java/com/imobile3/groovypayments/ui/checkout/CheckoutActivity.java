@@ -323,7 +323,7 @@ public class CheckoutActivity extends BaseActivity {
                     getString(R.string.checkout_confirm_title),
                     getString(R.string.checkout_confirm_message) + " " + new CurrencyRules().getFormattedAmount(change, Locale.getDefault()),
                     v -> {
-                        //TODO go to CheckoutComplete Activity
+                        startActivity(new Intent(this, CheckoutCompleteActivity.class));
                     });
         }
 

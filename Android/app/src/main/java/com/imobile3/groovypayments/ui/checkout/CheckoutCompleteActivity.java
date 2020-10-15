@@ -1,5 +1,6 @@
 package com.imobile3.groovypayments.ui.checkout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 import com.imobile3.groovypayments.R;
 import com.imobile3.groovypayments.manager.CartManager;
 import com.imobile3.groovypayments.ui.BaseActivity;
+import com.imobile3.groovypayments.ui.orderentry.OrderEntryActivity;
 
 import java.util.Locale;
 
@@ -49,5 +51,6 @@ public class CheckoutCompleteActivity extends BaseActivity {
         CartManager.getInstance().clearCurrentCart();
         // Remove this activity from the stack.
         finish();
+        startActivity(new Intent(this, OrderEntryActivity.class));
     }
 }
