@@ -184,26 +184,27 @@ public class CheckoutActivity extends BaseActivity {
                 return;
             }
             PaymentIntent intent = result.getIntent();
+            activity.dismissProgressDialog();
             if (intent.getStatus() == PaymentIntent.Status.Succeeded) {
                 CartManager.getInstance().addCreditPayment(PaymentResponseHelper.transform(intent));
-
                 activity.showAlertDialog(
-                        "Payment Complete",
+                        activity.getString(R.string.payment_complete_title),
                         JsonHelper.toPrettyJson(intent),
                         v->{
                             activity.startActivity(new Intent(activity,CheckoutCompleteActivity.class));
+                            activity.finish();
                         });
             } else if (intent.getStatus() == PaymentIntent.Status.RequiresPaymentMethod) {
 
                 activity.showAlertDialog(
-                        "Requires Payment Method",
-                        "Something seems to be wrong with your card!",
+                        activity.getString(R.string.requires_payment_method_title),
+                        activity.getString(R.string.requires_payment_method_message),
                         activity.getString(R.string.common_acknowledged), null);
             } else if (intent.getStatus() == PaymentIntent.Status.RequiresAction) {
 
                 activity.showAlertDialog(
-                        "Requires Action",
-                        "You may need to authenticate this transaction!",
+                        activity.getString(R.string.requires_action_title),
+                        activity.getString(R.string.requires_action_message),
                         activity.getString(R.string.common_acknowledged), null);
 
             }
@@ -217,7 +218,7 @@ public class CheckoutActivity extends BaseActivity {
             }
 
             // Payment request failed – allow retrying using the same payment method
-            activity.showAlertDialog("Error", e.toString(), "Woopsie!", null);
+            activity.showAlertDialog(activity.getString(R.string.error_title), e.toString(), activity.getString(R.string.error_text), null);
         }
     }
 
@@ -245,7 +246,7 @@ public class CheckoutActivity extends BaseActivity {
                         @Override
                         public void onClientSecretError(@NonNull String message) {
                             dismissProgressDialog();
-                            showAlertDialog("Error generating Client Secret",
+                            showAlertDialog(getString(R.string.client_secret_error_title),
                                     message,
                                     getString(R.string.common_acknowledged),
                                     null);
@@ -258,7 +259,6 @@ public class CheckoutActivity extends BaseActivity {
                                     getApplicationContext(),
                                     PaymentConfiguration.getInstance(getApplicationContext()).getPublishableKey());
                             stripe.confirmPayment(CheckoutActivity.this, confirmParams);
-                            dismissProgressDialog();
                         }
                     }
             );

@@ -57,6 +57,8 @@
     <string name="user_profile_email">Email:</string>
     <string name="user_profile_hours_week">Horas (Semana):</string>
     <string name="btn_logout">Cerrar sesión</string>
+    <string name="logged_out">Has sido desconectado</string>
+    <string name="not_logged_in_toast">No ha iniciado sesión y, por lo tanto, no tiene perfil de usuario.</string>
 
     <!-- Secret Functions -->
     <string name="secret_functions_subtitle">Área de alto secreto.</string>
@@ -106,6 +108,15 @@
     <string name="checkout_insufficient_amount_message">Oh No! Parece que esa cantidad es menor que la del carrito!</string>
     <string name="checkout_confirm_title">Confirmación de pago</string>
     <string name="checkout_confirm_message">Cambiar debido a: </string>
+    <string name="payment_complete_title">Pago completo</string>
+    <string name="requires_payment_method_title">Requiere método de pago</string>
+    <string name="requires_payment_method_message">Algo parece estar mal con tu tarjeta!</string>
+    <string name="requires_action_title">Requiere acción</string>
+    <string name="requires_action_message">Es posible que deba autenticar esta transacción!</string>
+    <string name="error_title">Error</string>
+    <string name="error_text">Woopsie!</string>
+    <string name="client_secret_error_title">Error al generar Secreta del Cliente</string>
+
 
     <!-- Payment Types -->
     <string name="credit">Crédito</string>
@@ -142,6 +153,6 @@
     </string-array>
 
     <!--    Shared Preference Key for the Logged In User's Id-->
-    <string name="LoggedInUserId_SP_Name">LoggedInUserIdSP</string>
-    <string name="LoggedInUserId_Key">LoggedInUserId</string>
+    <string name="logged_in_user_id_sp_name">LoggedInUserIdSP</string>
+    <string name="logged_in_user_id_key">LoggedInUserId</string>
 </resources>

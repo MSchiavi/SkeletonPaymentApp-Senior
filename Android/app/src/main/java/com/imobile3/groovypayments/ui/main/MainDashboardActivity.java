@@ -1,7 +1,9 @@
 package com.imobile3.groovypayments.ui.main;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.imobile3.groovypayments.R;
 import com.imobile3.groovypayments.logging.LogHelper;
@@ -10,6 +12,7 @@ import com.imobile3.groovypayments.ui.adapter.MainDashboardButton;
 import com.imobile3.groovypayments.ui.adapter.MainDashboardButtonAdapter;
 import com.imobile3.groovypayments.ui.chart.PieChartActivity;
 import com.imobile3.groovypayments.ui.dialog.CommonAlertDialog;
+import com.imobile3.groovypayments.ui.login.LoginActivity;
 import com.imobile3.groovypayments.ui.misc.SecretFunctionsActivity;
 import com.imobile3.groovypayments.ui.orderentry.OrderEntryActivity;
 import com.imobile3.groovypayments.ui.orderhistory.OrderHistoryActivity;
@@ -87,7 +90,7 @@ public class MainDashboardActivity extends BaseActivity {
                 break;
 
             case UserProfile:
-                startActivity(new Intent(this, UserProfileActivity.class));
+                startActivity(nextActivity());
                 break;
 
             case Management:
@@ -124,5 +127,20 @@ public class MainDashboardActivity extends BaseActivity {
         dashboardButtons.add(MainDashboardButton.DailyReport);
         dashboardButtons.add(MainDashboardButton.Placeholder2);
         return dashboardButtons;
+    }
+
+    //used for the UserProfile navigation
+    private Intent nextActivity(){
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.logged_in_user_id_sp_name),MODE_PRIVATE);
+        long id = sharedPreferences.getLong(getString(R.string.logged_in_user_id_key),-1);
+        Intent intent;
+        if(id == -1){
+            Toast.makeText(this,getString(R.string.not_logged_in_toast), Toast.LENGTH_LONG).show();
+            // Since we are sending them back to the LoginActivity we should clear the stack
+            intent = new Intent(this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        }else{
+            intent = new Intent(this, UserProfileActivity.class);
+        }
+        return intent;
     }
 }

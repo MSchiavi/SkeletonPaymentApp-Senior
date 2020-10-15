@@ -51,6 +51,8 @@
     <string name="user_profile_email">电子邮件:</string>
     <string name="user_profile_hours_week">小时 (星期):</string>
     <string name="btn_logout">登出</string>
+    <string name="logged_out">您已注销</string>
+    <string name="not_logged_in_toast">您尚未登录，因此没有用户个人资料</string>
 
     <!-- Secret Functions -->
     <string name="secret_functions_subtitle">最高机密区域。</string>
@@ -93,6 +95,14 @@
     <string name="checkout_insufficient_amount_message">不好了！看来该金额小于购物车金额！</string>
     <string name="checkout_confirm_title">确认付款</string>
     <string name="checkout_confirm_message">更改到期: </string>
+    <string name="payment_complete_title">付款完成</string>
+    <string name="requires_payment_method_title">需要付款方式</string>
+    <string name="requires_payment_method_message">您的卡似乎有问题！</string>
+    <string name="requires_action_title">需要采取行动</string>
+    <string name="requires_action_message">您可能需要验证此交易！</string>
+    <string name="error_title">错误</string>
+    <string name="error_text">Woopsie!</string>
+    <string name="client_secret_error_title">生成客户端机密时出错</string>
 
     <!-- Payment Types -->
     <string name="credit">信用</string>
@@ -129,6 +139,6 @@
     </string-array>
 
     <!--    Shared Preference Key for the Logged In User's Id-->
-    <string name="LoggedInUserId_SP_Name">LoggedInUserIdSP</string>
-    <string name="LoggedInUserId_Key">LoggedInUserId</string>
+    <string name="logged_in_user_id_sp_name">LoggedInUserIdSP</string>
+    <string name="logged_in_user_id_key">LoggedInUserId</string>
 </resources>

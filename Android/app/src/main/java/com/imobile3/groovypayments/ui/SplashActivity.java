@@ -43,19 +43,23 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void startLoginActivity() {
-        new Handler().postDelayed(
-                () -> {
-                    SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.LoggedInUserId_SP_Name),MODE_PRIVATE);
-                    long id = sharedPreferences.getLong(getString(R.string.LoggedInUserId_Key),-1);
-                    if(id == -1){
-                        SplashActivity.this.startActivity(
-                                new Intent(SplashActivity.this, LoginActivity.class));
-                    }else{
-                        SplashActivity.this.startActivity(
-                            new Intent(SplashActivity.this, MainDashboardActivity.class));
-                    }
-                    finish();
-                }, 500L);
+        new Handler().postDelayed(this::startLoginActivityLogic, 500L);
+    }
+
+    public void startLoginActivityLogic() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.logged_in_user_id_sp_name),MODE_PRIVATE);
+        long id = sharedPreferences.getLong(getString(R.string.logged_in_user_id_key),-1);
+        Class nextActivityClass;
+
+        if(id == -1){
+            nextActivityClass = LoginActivity.class;
+        }else{
+            nextActivityClass = MainDashboardActivity.class;
+        }
+        SplashActivity.this.startActivity(
+                new Intent(SplashActivity.this, nextActivityClass)
+        );
+        finish();
     }
 
     @Override
