@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -138,6 +139,13 @@ public class TestDataRepository {
      */
     public int getRandomIntRanged(int min, int max) {
         return mRandom.nextInt((max + 1) - min) + min;
+    }
+
+    public double getRandomDoubleRanged(double min, double max){
+        double difference = (max - min) + 1;
+        double randDouble = min + (double)(Math.random() * difference);
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(randDouble));
     }
 
     //endregion
@@ -470,47 +478,58 @@ public class TestDataRepository {
 
         //TODO password encryption needs to be taken care of at some point.
 
+        double min = 20;
+        double max = 40;
+
         if (Environment.GroovyDemo == environment) {
-            results.add(UserBuilder.build(USER_ID_1, getRandomFirstName(),
-                    getRandomLastName(),
+            results.add(UserBuilder.build(USER_ID_1, "Bob",
+                    "Landers",
+                    "Bob Landers",
+                    mRandomEmailAddresses[0],
+                    "test123",
+                    getRandomDoubleRanged(min,max)));
+            results.add(UserBuilder.build(USER_ID_2, "Luther",
+                    "Graves",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_2, getRandomFirstName(),
-                    getRandomLastName(),
+                    mRandomEmailAddresses[1],
+                    "test123",
+                    getRandomDoubleRanged(min,max)));
+            results.add(UserBuilder.build(USER_ID_3, "Troy",
+                    "Johnson",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_3, getRandomFirstName(),
-                    getRandomLastName(),
+                    mRandomEmailAddresses[2],
+                    "test123",
+                    getRandomDoubleRanged(min,max)));
+            results.add(UserBuilder.build(USER_ID_4, "Cindy",
+                    "Adams",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_4, getRandomFirstName(),
-                    getRandomLastName(),
+                    mRandomEmailAddresses[3],
+                    "test123",
+                    getRandomDoubleRanged(min,max)));
+            results.add(UserBuilder.build(USER_ID_5, "Rachel",
+                    "Smith",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_5, getRandomFirstName(),
-                    getRandomLastName(),
+                    mRandomEmailAddresses[4],
+                    "test123",
+                    getRandomDoubleRanged(min,max)));
+            results.add(UserBuilder.build(USER_ID_6, "Gail",
+                    "Gehrig",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_6, getRandomFirstName(),
-                    getRandomLastName(),
+                    mRandomEmailAddresses[5],
+                    "test123",
+                    getRandomDoubleRanged(min,max)));
+            results.add(UserBuilder.build(USER_ID_7, "Liz",
+                    "Thomas",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_7, getRandomFirstName(),
-                    getRandomLastName(),
+                    mRandomEmailAddresses[6],
+                    "test123",
+                    getRandomDoubleRanged(min,max)));
+            results.add(UserBuilder.build(USER_ID_8, "Kevin",
+                    "Schmidt",
                     getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
-            results.add(UserBuilder.build(USER_ID_8, getRandomFirstName(),
-                    getRandomLastName(),
-                    getRandomFullName(),
-                    getRandomEmailAddress(),
-                    "test"));
+                    mRandomEmailAddresses[7],
+                    "test123",
+                    getRandomDoubleRanged(min,max)));
         }
         return results;
     }

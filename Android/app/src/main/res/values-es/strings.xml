@@ -56,6 +56,7 @@
     <string name="user_profile_username">Nombre de usuario:</string>
     <string name="user_profile_email">Email:</string>
     <string name="user_profile_hours_week">Horas (Semana):</string>
+    <string name="btn_logout">Cerrar sesión</string>
 
     <!-- Secret Functions -->
     <string name="secret_functions_subtitle">Área de alto secreto.</string>
@@ -139,4 +140,8 @@
         <item>Usando Machine Learning&#8230;</item>
         <item>Contando frijoles&#8230;</item>
     </string-array>
+
+    <!--    Shared Preference Key for the Logged In User's Id-->
+    <string name="LoggedInUserId_SP_Name">LoggedInUserIdSP</string>
+    <string name="LoggedInUserId_Key">LoggedInUserId</string>
 </resources>

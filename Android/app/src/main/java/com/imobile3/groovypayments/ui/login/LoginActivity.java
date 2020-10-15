@@ -1,7 +1,9 @@
 package com.imobile3.groovypayments.ui.login;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -71,6 +73,13 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+        loginViewModel.getLoginId().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String id) {
+                updateSharedPreferenceWithId(id);
+            }
+        });
+
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -122,8 +131,14 @@ public class LoginActivity extends BaseActivity {
 
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO: Initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+    }
+
+    private void updateSharedPreferenceWithId(String Id){
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.LoggedInUserId_SP_Name), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong(getString(R.string.LoggedInUserId_Key),Long.parseLong(Id));
+        editor.apply();
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
