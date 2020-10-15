@@ -1,6 +1,7 @@
 package com.imobile3.groovypayments.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 
 import com.imobile3.groovypayments.R;
 import com.imobile3.groovypayments.ui.login.LoginActivity;
+import com.imobile3.groovypayments.ui.main.MainDashboardActivity;
 
 import androidx.annotation.Nullable;
 
@@ -43,8 +45,15 @@ public class SplashActivity extends BaseActivity {
     private void startLoginActivity() {
         new Handler().postDelayed(
                 () -> {
-                    SplashActivity.this.startActivity(
-                            new Intent(SplashActivity.this, LoginActivity.class));
+                    SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.LoggedInUserId_SP_Name),MODE_PRIVATE);
+                    long id = sharedPreferences.getLong(getString(R.string.LoggedInUserId_Key),-1);
+                    if(id == -1){
+                        SplashActivity.this.startActivity(
+                                new Intent(SplashActivity.this, LoginActivity.class));
+                    }else{
+                        SplashActivity.this.startActivity(
+                            new Intent(SplashActivity.this, MainDashboardActivity.class));
+                    }
                     finish();
                 }, 500L);
     }
