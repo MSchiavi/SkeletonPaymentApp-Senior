@@ -37,4 +37,8 @@ public class UserProfileViewModel extends ViewModel {
         });
     }
 
+    public void logout(){
+        mRepository.logout();
+    }
+
 }
