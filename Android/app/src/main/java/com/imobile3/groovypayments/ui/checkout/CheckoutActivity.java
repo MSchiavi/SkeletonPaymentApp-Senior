@@ -190,9 +190,9 @@ public class CheckoutActivity extends BaseActivity {
                 activity.showAlertDialog(
                         "Payment Complete",
                         JsonHelper.toPrettyJson(intent),
-                        null);
-
-                //TODO This is probably where the checkout Finish Activity gets launched
+                        v->{
+                            activity.startActivity(new Intent(activity,CheckoutCompleteActivity.class));
+                        });
             } else if (intent.getStatus() == PaymentIntent.Status.RequiresPaymentMethod) {
 
                 activity.showAlertDialog(
@@ -323,7 +323,7 @@ public class CheckoutActivity extends BaseActivity {
                     getString(R.string.checkout_confirm_title),
                     getString(R.string.checkout_confirm_message) + " " + new CurrencyRules().getFormattedAmount(change, Locale.getDefault()),
                     v -> {
-                        //TODO go to CheckoutComplete Activity
+                        startActivity(new Intent(this, CheckoutCompleteActivity.class));
                     });
         }
 
