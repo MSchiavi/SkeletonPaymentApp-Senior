@@ -135,4 +135,8 @@
         <item>Using Machine Learning&#8230;</item>
         <item>Counting beans&#8230;</item>
     </string-array>
+
+    <!--    Shared Preference Key for the Logged In User's Id-->
+    <string name="LoggedInUserId_SP_Name">LoggedInUserIdSP</string>
+    <string name="LoggedInUserId_Key">LoggedInUserId</string>
 </resources>

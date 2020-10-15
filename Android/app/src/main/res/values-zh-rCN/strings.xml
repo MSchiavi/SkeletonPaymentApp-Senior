@@ -122,4 +122,8 @@
         <item>使用机器学习&#8230;</item>
         <item>数豆&#8230;</item>
     </string-array>
+
+    <!--    Shared Preference Key for the Logged In User's Id-->
+    <string name="LoggedInUserId_SP_Name">LoggedInUserIdSP</string>
+    <string name="LoggedInUserId_Key">LoggedInUserId</string>
 </resources>

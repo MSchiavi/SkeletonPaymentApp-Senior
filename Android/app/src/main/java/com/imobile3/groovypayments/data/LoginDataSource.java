@@ -14,7 +14,6 @@ public class LoginDataSource {
     public Result<LoggedInUser> login(String username, String password) {
 
         try {
-            // TODO: handle loggedInUser authentication
            UserEntity user = DatabaseHelper.getInstance().getDatabase().getUserDao().getUserByEmail(username);
             if(user.getPassword().equals(password)){
                 LoggedInUser loggedInUser = new LoggedInUser(
