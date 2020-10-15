@@ -190,9 +190,9 @@ public class CheckoutActivity extends BaseActivity {
                 activity.showAlertDialog(
                         "Payment Complete",
                         JsonHelper.toPrettyJson(intent),
-                        null);
-
-                //TODO This is probably where the checkout Finish Activity gets launched
+                        v->{
+                            activity.startActivity(new Intent(activity,CheckoutCompleteActivity.class));
+                        });
             } else if (intent.getStatus() == PaymentIntent.Status.RequiresPaymentMethod) {
 
                 activity.showAlertDialog(
