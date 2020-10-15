@@ -26,6 +26,9 @@ public class UserEntity {
     @ColumnInfo(name = "password")
     private String mPassword;
 
+    @ColumnInfo(name = "hours")
+    private double mHours;
+
     public UserEntity() {
     }
 
@@ -76,4 +79,8 @@ public class UserEntity {
     public void setPassword(String password) {
         mPassword = password;
     }
+
+    public double getHours() { return mHours; }
+
+    public void setHours(double hours) { mHours = hours; }
 }

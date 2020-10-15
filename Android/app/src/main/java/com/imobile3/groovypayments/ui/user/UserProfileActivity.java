@@ -53,8 +53,8 @@ public class UserProfileActivity extends BaseActivity {
         TextView lblHoursWeek = findViewById(R.id.label_hours_week);
         userProfileViewModel.getLoggedInUser().observe(this,loggedInUser -> {
             lblUsername.setText(loggedInUser.getDisplayName());
-            lblEmail.setText(loggedInUser.getDisplayName());
-            lblHoursWeek.setText(loggedInUser.getDisplayName());
+            lblEmail.setText(loggedInUser.getEmail());
+            lblHoursWeek.setText(Double.toString(loggedInUser.getHours()));
         });
     }
 }

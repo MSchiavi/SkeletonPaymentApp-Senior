@@ -17,7 +17,8 @@ public class UserBuilder {
             String lastName,
             String userName,
             String email,
-            String password
+            String password,
+            double hours
     ) {
         UserEntity result = new UserEntity();
         result.setId(id);
@@ -26,6 +27,7 @@ public class UserBuilder {
         result.setUsername(userName);
         result.setEmail(email);
         result.setPassword(password);
+        result.setHours(hours);
         return result;
     }
 }

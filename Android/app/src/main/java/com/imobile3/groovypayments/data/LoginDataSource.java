@@ -18,7 +18,9 @@ public class LoginDataSource {
             if(user.getPassword().equals(password)){
                 LoggedInUser loggedInUser = new LoggedInUser(
                         Long.toString(user.getId()),
-                        user.getUsername()
+                        user.getUsername(),
+                        user.getEmail(),
+                        user.getHours()
                 );
                 return new Result.Success<>(loggedInUser);
             }
