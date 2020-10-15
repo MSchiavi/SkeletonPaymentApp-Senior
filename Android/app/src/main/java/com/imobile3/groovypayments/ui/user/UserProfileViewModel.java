@@ -11,12 +11,17 @@ import com.imobile3.groovypayments.data.LoginRepository;
 import com.imobile3.groovypayments.data.Result;
 import com.imobile3.groovypayments.data.entities.UserEntity;
 import com.imobile3.groovypayments.data.model.LoggedInUser;
+import com.imobile3.groovypayments.logging.LogHelper;
+
+import java.util.logging.Level;
 
 /**
  * The ViewModel serves as an async bridge between the View (Activity, Fragment)
  * and our backing data repository (Database).
  */
 public class UserProfileViewModel extends ViewModel {
+
+    private final String TAG = getClass().getSimpleName();
 
     private LoginRepository mRepository;
     UserProfileViewModel(LoginRepository repository){mRepository = repository;}
@@ -33,6 +38,9 @@ public class UserProfileViewModel extends ViewModel {
             Result<LoggedInUser> result = mRepository.login(user.getEmail(),user.getPassword());
             if(result instanceof Result.Success){
                 loggedInUser.postValue(((Result.Success<LoggedInUser>) result).getData());
+            }else if(result instanceof Result.Error){
+                //At this point we should consider just clearing the SharePreferences and sending them back to the LoginActivity.
+                LogHelper.write(Level.CONFIG,TAG,"Issue with UserProfile when trying to login user in SharedPreferences");
             }
         });
     }
