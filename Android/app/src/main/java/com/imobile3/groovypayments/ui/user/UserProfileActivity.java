@@ -3,6 +3,7 @@ package com.imobile3.groovypayments.ui.user;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProviders;
@@ -51,10 +52,18 @@ public class UserProfileActivity extends BaseActivity {
         TextView lblUsername = findViewById(R.id.label_username);
         TextView lblEmail = findViewById(R.id.label_email);
         TextView lblHoursWeek = findViewById(R.id.label_hours_week);
+
+        TextView username = findViewById(R.id.username);
+        TextView email = findViewById(R.id.email);
+        TextView hoursWeek = findViewById(R.id.hours_week);
         userProfileViewModel.getLoggedInUser().observe(this,loggedInUser -> {
-            lblUsername.setText(loggedInUser.getDisplayName());
-            lblEmail.setText(loggedInUser.getEmail());
-            lblHoursWeek.setText(Double.toString(loggedInUser.getHours()));
+            username.setText(loggedInUser.getDisplayName());
+            email.setText(loggedInUser.getEmail());
+            hoursWeek.setText(Double.toString(loggedInUser.getHours()));
+
+            lblUsername.setVisibility(View.VISIBLE);
+            lblEmail.setVisibility(View.VISIBLE);
+            lblHoursWeek.setVisibility(View.VISIBLE);
         });
     }
 }

@@ -54,6 +54,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/label_username"
                     style="@style/TextView.Large.Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -64,7 +65,7 @@
                     tools:visibility="visible" />
 
                 <TextView
-                    android:id="@+id/label_username"
+                    android:id="@+id/username"
                     style="@style/TextView.Monospace.Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -81,6 +82,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/label_email"
                     style="@style/TextView.Large.Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -91,7 +93,7 @@
                     tools:visibility="visible" />
 
                 <TextView
-                    android:id="@+id/label_email"
+                    android:id="@+id/email"
                     style="@style/TextView.Monospace.Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -108,6 +110,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/label_hours_week"
                     style="@style/TextView.Large.Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -118,7 +121,7 @@
                     tools:visibility="visible" />
 
                 <TextView
-                    android:id="@+id/label_hours_week"
+                    android:id="@+id/hours_week"
                     style="@style/TextView.Monospace.Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
