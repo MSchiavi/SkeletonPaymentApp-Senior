@@ -51,6 +51,7 @@
     <string name="user_profile_email">电子邮件:</string>
     <string name="user_profile_hours_week">小时 (星期):</string>
     <string name="btn_logout">登出</string>
+    <string name="logged_out">您已注销</string>
 
     <!-- Secret Functions -->
     <string name="secret_functions_subtitle">最高机密区域。</string>

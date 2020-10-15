@@ -54,6 +54,7 @@
     <string name="user_profile_email">Email:</string>
     <string name="user_profile_hours_week">Hours (Week):</string>
     <string name="btn_logout">Logout</string>
+    <string name="logged_out">You have been logged out</string>
 
     <!-- Secret Functions -->
     <string name="secret_functions_subtitle">Top secret area.</string>

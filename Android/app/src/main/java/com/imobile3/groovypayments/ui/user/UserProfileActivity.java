@@ -1,16 +1,19 @@
 package com.imobile3.groovypayments.ui.user;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProviders;
 
 import com.imobile3.groovypayments.R;
 import com.imobile3.groovypayments.ui.BaseActivity;
+import com.imobile3.groovypayments.ui.main.MainDashboardActivity;
 
 public class UserProfileActivity extends BaseActivity {
 
@@ -53,22 +56,18 @@ public class UserProfileActivity extends BaseActivity {
         TextView lblUsername = findViewById(R.id.label_username);
         TextView lblEmail = findViewById(R.id.label_email);
         TextView lblHoursWeek = findViewById(R.id.label_hours_week);
-
         TextView username = findViewById(R.id.username);
         TextView email = findViewById(R.id.email);
         TextView hoursWeek = findViewById(R.id.hours_week);
-
         Button logout = findViewById(R.id.btn_logout);
 
         userProfileViewModel.getLoggedInUser().observe(this,loggedInUser -> {
             username.setText(loggedInUser.getDisplayName());
             email.setText(loggedInUser.getEmail());
             hoursWeek.setText(Double.toString(loggedInUser.getHours()));
-
             lblUsername.setVisibility(View.VISIBLE);
             lblEmail.setVisibility(View.VISIBLE);
             lblHoursWeek.setVisibility(View.VISIBLE);
-
             logout.setVisibility(View.VISIBLE);
         });
 
@@ -78,17 +77,22 @@ public class UserProfileActivity extends BaseActivity {
             username.setText(null);
             email.setText(null);
             hoursWeek.setText(null);
-
             lblUsername.setVisibility(View.GONE);
             lblEmail.setVisibility(View.GONE);
             lblHoursWeek.setVisibility(View.GONE);
-
             logout.setVisibility(View.GONE);
 
             SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.logged_in_user_id_sp_name),MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.apply();
+
+            Toast.makeText(this,getString(R.string.logged_out),Toast.LENGTH_LONG).show();
+
+            UserProfileActivity.this.startActivity(
+                    new Intent(UserProfileActivity.this, MainDashboardActivity.class)
+            );
+
         });
     }
 
