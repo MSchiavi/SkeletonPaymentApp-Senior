@@ -47,6 +47,7 @@
     <string name="main_dashboard_subtitle">Where would you like to go?</string>
     <string name="reports_description">View products popularity chart based on daily
         report.</string>
+    <string name="not_logged_in_toast">You are not logged in and therefor have no User Profile</string>
 
     <!-- User Profile -->
     <string name="user_profile_subtitle_format">Welcome %1$s.</string>

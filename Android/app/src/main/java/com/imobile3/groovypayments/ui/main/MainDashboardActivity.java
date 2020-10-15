@@ -3,6 +3,7 @@ package com.imobile3.groovypayments.ui.main;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.imobile3.groovypayments.R;
 import com.imobile3.groovypayments.logging.LogHelper;
@@ -134,6 +135,7 @@ public class MainDashboardActivity extends BaseActivity {
         long id = sharedPreferences.getLong(getString(R.string.logged_in_user_id_key),-1);
         Class nextActivityClass;
         if(id == -1){
+            Toast.makeText(this,getString(R.string.not_logged_in_toast), Toast.LENGTH_LONG).show();
             nextActivityClass = LoginActivity.class;
         }else{
             nextActivityClass = UserProfileActivity.class;

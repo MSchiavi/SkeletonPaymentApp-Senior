@@ -87,7 +87,7 @@ public class UserProfileActivity extends BaseActivity {
             editor.clear();
             editor.apply();
 
-            Toast.makeText(this,getString(R.string.logged_out),Toast.LENGTH_LONG).show();
+            Toast.makeText(this,getString(R.string.logged_out),Toast.LENGTH_SHORT).show();
 
             UserProfileActivity.this.startActivity(
                     new Intent(UserProfileActivity.this, MainDashboardActivity.class)
